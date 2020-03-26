@@ -1,5 +1,8 @@
 from staff import *
 from food import *
+from animal import *
+from observation import *
+from feeding import *
 from terminaltables import AsciiTable
 import datetime
 import os
@@ -57,13 +60,14 @@ def menu():
     elif selection == 1: printStaff()
     elif selection == 2: printAnimals()
     elif selection == 3: printFood()
+    elif selection == 6: addStaff()
     
 
 if __name__ == '__main__':
+
     staffList = []
     foodList = [] 
     animalList = []
-    allLists = [staffList, foodList, animalList]
     #foodList.append(Food("Gofret", "Eti"))
     staffList.append(Staff("0", "Kerem", "Cömert", "A-123", "1234"))
     staffList.append(Staff("1", "Yiğit", "Aslı", "A-124", "1325"))
