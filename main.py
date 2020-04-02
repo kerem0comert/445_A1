@@ -96,11 +96,8 @@ if __name__ == '__main__':
     foodList = [] 
     animalList = []
     #foodList.append(Food("Gofret", "Eti"))
-    staffList.append(Staff("0", "Kerem", "Cömert", "A-123", "1234"))
-    staffList.append(Staff("1", "Yiğit", "Aslı", "A-124", "1325"))
     loadfile()     #Finds or creates source txt file
     readTxtFile()  #Reads from source file to according staff,animal or food lists
     menu()
     
-    #printStaff()
-    #printFood()
+ 

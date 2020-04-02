@@ -12,7 +12,7 @@
     <Name>445_A1</Name>
     <RootNamespace>445_A1</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>haha.txt</CommandLineArguments>
+    <CommandLineArguments>app.txt</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
