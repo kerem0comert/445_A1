@@ -3,5 +3,8 @@ class Food:
         self.foodName = foodName
         self.manufacturer = manufacturer
 
-  
-        
+    @staticmethod
+    def create():
+        foodName = input("Enter Food Name: ")
+        manufacturer = input("Enter Manufacturer: ")
+        return Food(foodName, manufacturer)
