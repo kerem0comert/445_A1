@@ -6,7 +6,31 @@ from feeding import *
 from terminaltables import AsciiTable
 import datetime
 import os
+import sys
+sourcefile = "place_holder"  #Global variable-source txt file's name
+def loadfile():
+    global sourcefile
+    if sys.argv[1:]==[]:       #if there is no argument entered in terminal
+        sourcefile=input("There is no argument!\nEnter a name for txt file to be created:")
+    else:                     #if there is an extra argument in terminal
+        print(f"The source txt file name is {sys.argv[1]=}\n")
+        sourcefile=sys.argv[1]      #no error checks - sourcefileNotFound, TooManyArguments SHALL BE ADDED
 
+def readTxtFile():            #staff read is done, waiting for animal and food add functions to be added to implement them
+    fo= open(sourcefile,"r+")
+    fl=fo.readlines()
+    for ln in fl:
+        if ln.startswith("S:"):
+            step_0=ln.split(":")
+            step_1=step_0[1]
+            step_2=step_1.split(",")
+            staffList.append(Staff(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))       
+        #if ln.startswith("A:"):
+            #step_0=ln.split(":")
+            #step_1=step_0[1]
+            #step_2=step_1.split(",")
+            #animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
+    fo.close()      
 def printAnimals(): 
     data = [['Number', 'Gender', ]]
     for a in animalList: data.append([a.aNo, f.manufacturer])
@@ -71,6 +95,8 @@ if __name__ == '__main__':
     #foodList.append(Food("Gofret", "Eti"))
     staffList.append(Staff("0", "Kerem", "Cömert", "A-123", "1234"))
     staffList.append(Staff("1", "Yiğit", "Aslı", "A-124", "1325"))
+    loadfile()     #Finds or creates source txt file
+    readTxtFile()  #Reads from source file to according staff,animal or food lists
     menu()
     
     #printStaff()
