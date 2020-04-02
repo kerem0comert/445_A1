@@ -31,6 +31,9 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
             #step_2=step_1.split(",")
             #animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
     fo.close()      
+
+def addStaff(): pass
+
 def printAnimals(): 
     data = [['Number', 'Gender', ]]
     for a in animalList: data.append([a.aNo, f.manufacturer])

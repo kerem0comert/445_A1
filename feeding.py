@@ -1,4 +1,3 @@
-from animal import *
 
 class Feeding:
     def __init__(self, date, time, food, staff):
