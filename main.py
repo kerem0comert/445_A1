@@ -7,6 +7,8 @@ from terminaltables import AsciiTable
 import datetime
 import os
 
+def addStaff(): pass
+
 def printAnimals(): 
     data = [['Number', 'Gender', ]]
     for a in animalList: data.append([a.aNo, f.manufacturer])
