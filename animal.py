@@ -28,7 +28,7 @@ class Animal:
 
     
     @staticmethod
-    def chooseEnvironment(environmentList):
+    def chooseEnvironment(environmentList,sourcefile,environmentID):
         No = 1
         data = [['No', 'Humidity', 'Size', 'Temperature', 'Hours of light']]
         for a in environmentList:
@@ -37,16 +37,23 @@ class Animal:
         print(AsciiTable(data).table)
         selection = int(input("Select the number of environment you want to add (type 0 to add new one): "))
         if (selection == 0):
-            theNewEnvironmet = Environment.create()
+            theNewEnvironmet = Environment.create(sourcefile)
             environmentList.append(theNewEnvironmet)
+            environmentID=No
             return theNewEnvironmet
         else:
+            environmentID=selection
             return environmentList[selection - 1]
 
     @staticmethod
-    def create(environmentList):
+    def create(environmentList,sourcefile):
         no = input("Enter No: ")
         gender = input("Enter Gender: ")
         doB = input("Enter Date of Birth: ")
         color = input("Enter Color: ")
-        return Animal(no, gender, doB, color, Animal.chooseEnvironment(environmentList))
+        environmentID=0
+        Environment_animal=Animal.chooseEnvironment(environmentList,sourcefile,environmentID)
+        fo=open(sourcefile,"a+")
+        fo.write("\nA:%s,%s,%s,%s,%s" % (no,gender,doB,color,environmentID))
+        fo.close()
+        return Animal(no, gender, doB, color, Environment_animal)

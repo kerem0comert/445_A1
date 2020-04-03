@@ -12,6 +12,8 @@ def loadfile():
     global sourcefile
     if sys.argv[1:]==[]:       #if there is no argument entered in terminal
         sourcefile=input("There is no argument!\nEnter a name for txt file to be created:")
+        fo=open(sourcefile,"w+")
+        fo.close()
     else:                     #if there is an extra argument in terminal
         print(f"The source txt file name is {sys.argv[1]}")
         sourcefile=sys.argv[1]      #no error checks - sourcefileNotFound, TooManyArguments SHALL BE ADDED
@@ -25,24 +27,36 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
             step_1=step_0[1]
             step_2=step_1.split(",")
             staffList.append(Staff(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))       
-        #if ln.startswith("A:"):
-            #step_0=ln.split(":")
-            #step_1=step_0[1]
-            #step_2=step_1.split(",")
-            #animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
+        if ln.startswith("A:"):
+            step_0=ln.split(":")
+            step_1=step_0[1]
+            step_2=step_1.split(",")
+            animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
+        if ln.startswith("E:"):
+            step_0=ln.split(":")
+            step_1=step_0[1]
+            step_2=step_1.split(",")
+            environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3])) 
+        if ln.startswith("F:"):
+            step_0=ln.split(":")
+            step_1=step_0[1]
+            step_2=step_1.split(",")
+            foodList.append(Food(step_2[0],step_2[1])) 
     fo.close()
 
 def addStaff():
-    staffList.append(Staff.create())
+    staffList.append(Staff.create(sourcefile))
+    
+
 
 def addAnimal():
-    animalList.append(Animal.create(environmentList))
+    animalList.append(Animal.create(environmentList,sourcefile))
 
 def addEnvironment():
-    environmentList.append(Environment.create())
+    environmentList.append(Environment.create(sourcefile))
 
 def addFood():
-    foodList.append(Food.create())
+    foodList.append(Food.create(sourcefile))
 
 def printAnimals():
     data = [['Number', 'Gender', 'Date of Birth', 'Color']]

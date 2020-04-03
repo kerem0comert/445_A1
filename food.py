@@ -4,7 +4,10 @@ class Food:
         self.manufacturer = manufacturer
 
     @staticmethod
-    def create():
+    def create(sourcefile):
         foodName = input("Enter Food Name: ")
         manufacturer = input("Enter Manufacturer: ")
+        fo=open(sourcefile,"a+")
+        fo.write("\nF:%s,%s" % (foodName,manufacturer))
+        fo.close()
         return Food(foodName, manufacturer)
