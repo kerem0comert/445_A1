@@ -36,7 +36,7 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
             step_0=ln.split(":")
             step_1=step_0[1]
             step_2=step_1.split(",")
-            environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3])) 
+            environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
         if ln.startswith("F:"):
             step_0=ln.split(":")
             step_1=step_0[1]
@@ -53,7 +53,7 @@ def addAnimal():
     animalList.append(Animal.create(environmentList,sourcefile))
 
 def addEnvironment():
-    environmentList.append(Environment.create(sourcefile))
+    environmentList.append(Environment.create(sourcefile,environmentList))
 
 def addFood():
     foodList.append(Food.create(sourcefile))
