@@ -1,7 +1,8 @@
 from terminaltables import AsciiTable
 from environment import *
+from observation import *
 
-class Animal:
+class Animal():
     observationRecord = []
     feedingRecord = []
     def __init__(self, no, gender, doB, color, environment):
@@ -12,9 +13,12 @@ class Animal:
         self.environment = environment
 
     def printDetails(self):
+        print("\n========ANIMAL=========")
+        data = [['no', 'gender', 'doB', 'color'],[self.no, self.gender, self.doB, self.color]]
+        print(AsciiTable(data).table)
         print("\n========OBSERVATION RECORDS=========")
         data = [['Date', 'Time', 'Weight', 'Temperature', 'Note', 'Staff']]
-        for record in self.observationRecord: data.append([record.date, record.time, record.aWeight, record.temperature, record.note, record.staff])
+        for record in self.observationRecord: data.append([record.observationDate, record.observationTime, record.aWeight, record.temperature, record.note, record.staff])
         print(AsciiTable(data).table)
         print("\n==========FEEDING RECORDS===========")
         data = [['Date', 'Time', 'Food', 'Staff']]
@@ -22,8 +26,9 @@ class Animal:
         print(AsciiTable(data).table)
         print("\n============ENVIRONMENT=============")
         data = [['Humidity', 'Size', 'Temperature', 'Hours of light']]
-        data.append([self.environment.humidity, self.environment.size, self.environment.temperature, self.environment.h_of_light])
+        for record in self.environment: data.append([self.environment.humidity, self.environment.size, self.environment.temperature, self.environment.h_of_light])
         print(AsciiTable(data).table)
+       
         input("Press Enter to continue...")
 
     
@@ -54,3 +59,8 @@ class Animal:
         fo.write("\nA:%s,%s,%s,%s,%s" % (no,gender,doB,color,Environment_animal.environmentID))
         fo.close()
         return Animal(no, gender, doB, color, Environment_animal)
+
+
+    def addObservation(self, sourcefile, staffList): 
+        self.observationRecord.append(Observation.create(self.observationRecord,sourcefile,staffList))
+      
