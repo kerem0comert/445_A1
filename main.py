@@ -115,8 +115,8 @@ def printFood():
 
 
 def printEnvironment():
-    data = [['Humidity', 'Size', 'Temperature', 'Hours of light']]
-    for a in environmentList: data.append([a.humidity, a.size, a.temperature, a.h_of_light])
+    data = [['ID', 'Humidity', 'Size', 'Temperature', 'Hours of light']]
+    for a in environmentList: data.append([a.environmentID, a.humidity, a.size, a.temperature, a.h_of_light])
     print(AsciiTable(data).table)
     input("Press Enter to continue...")
 
