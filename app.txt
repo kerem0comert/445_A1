@@ -1,3 +1,0 @@
-S:0,Kerem,Comert,A-123,1234
-S:1,Yigit Berkay,Asli,A-124,1325
-S:2,Soykan,Kamal,A-031,3131
