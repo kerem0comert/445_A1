@@ -3,5 +3,7 @@ S:012345,Soyklan,KAMAL,A-031,999999
 E:20,Big,30,16,1
 A:1,Male,1998,Pink,1
 E:%85,Small,25,14,2
-F:Meat,SoykaninMutfagi
+F:1,Meat,SoykaninMutfagi
 O:06/04/2020,15:41,1,2,testnote,012345,1
+O:06/04/2020,16:41,120,123,123,012345,1
+I:06/04/2020,16:42,1,50,012345,1

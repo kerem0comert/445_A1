@@ -46,7 +46,7 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
             environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
         elif ln.startswith("F:"):
             step_2=ln[2:].split(",")
-            foodList.append(Food(step_2[0],step_2[1]))
+            foodList.append(Food(step_2[0],step_2[1],step_2[2]))
         elif ln.startswith("O:"):
             step_2=ln[2:].split(",")
             theStaff = None
@@ -66,6 +66,33 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
                 print("The animal with no", step_2[6], "is not found!")
                 raise SystemExit
             theAnimal.observationRecord.append(Observation(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4],theStaff))
+        elif ln.startswith("I:"): #feeding
+            step_2=ln[2:].split(",")
+            theStaff = None
+            for staff in staffList:
+                if staff.id == step_2[4]:
+                    theStaff = staff
+            if (theStaff == None):
+                print("Error while parsing file!")
+                print("The staff with no", step_2[4], "is not found!")
+                raise SystemExit
+            theAnimal = None
+            for animal in animalList:
+                if animal.no == step_2[5]:
+                    theAnimal = animal
+            if (theAnimal == None):
+                print("Error while parsing file!")
+                print("The animal with no", step_2[5], "is not found!")
+                raise SystemExit
+            theFood = None
+            for food in foodList:
+                if food.foodID == step_2[2]:
+                    theFood = food
+            if (theFood == None):
+                print("Error while parsing file!")
+                print("The food with no", step_2[2], "is not found!")
+                raise SystemExit
+            theAnimal.feedingRecord.append(Feeding(step_2[0],step_2[1],theFood,step_2[3],theStaff))
     fo.close()
 
 
@@ -98,7 +125,17 @@ def addObservation():
     foundAnimal.addObservation(sourcefile,staffList)
 
 
-def addFeedingReport(): pass
+def addFeedingReport():
+    printAnimals(0)
+    selection = input("Select an animal by its no: ")
+    foundAnimal = None
+    while foundAnimal is None:
+        for animal in animalList:
+            if selection == animal.no: foundAnimal = animal
+        if foundAnimal is None:
+            print("This animal doesn't exist in the database.")
+            selection = input("Select an animal by its no: ")
+    foundAnimal.addFeeding(sourcefile,staffList,foodList)
 
 
 def printAnimals(isFromMenu):

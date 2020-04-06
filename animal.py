@@ -21,8 +21,8 @@ class Animal:
         for record in self.observationRecord: data.append([record.observationDate, record.observationTime, record.aWeight, record.temperature, record.note, record.staff.fName + " " + record.staff.lName])
         print(AsciiTable(data).table)
         print("\n==========FEEDING RECORDS===========")
-        data = [['Date', 'Time', 'Food', 'Staff']]
-        for record in self.feedingRecord: data.append([record.date, record.time, record.food, record.staff])
+        data = [['Date', 'Time', 'Food Name', 'Manufacturer', 'Weight', 'Staff']]
+        for record in self.feedingRecord: data.append([record.date, record.time, record.food.foodName, record.food.manufacturer, record.weight, record.staff.fName + " " + record.staff.lName])
         print(AsciiTable(data).table)
         print("\n============ENVIRONMENT=============")
         data = [['Humidity', 'Size', 'Temperature', 'Hours of light']]
@@ -63,4 +63,6 @@ class Animal:
 
     def addObservation(self, sourcefile, staffList): 
         self.observationRecord.append(Observation.create(self.no,sourcefile,staffList))
-      
+
+    def addFeeding(self, sourcefile, staffList, foodList): 
+        self.feedingRecord.append(Feeding.create(self.no,sourcefile,staffList, foodList))
