@@ -1,5 +1,4 @@
 from staff import *
-from pprint import pprint
 from food import *
 from animal import *
 from observation import *
@@ -8,10 +7,8 @@ from terminaltables import AsciiTable
 import datetime
 import os
 import sys
-
-
 sourcefile = "place_holder"  #Global variable-source txt file's name
-def loadFile():
+def loadfile():
     global sourcefile
     if sys.argv[1:]==[]:       #if there is no argument entered in terminal
         sourcefile=input("There is no argument!\nEnter a name for txt file to be created:")
@@ -20,7 +17,6 @@ def loadFile():
     else:                     #if there is an extra argument in terminal
         print(f"The source txt file name is {sys.argv[1]}")
         sourcefile=sys.argv[1]      #no error checks - sourcefileNotFound, TooManyArguments SHALL BE ADDED
-
 
 def readTxtFile():            #staff read is done, waiting for animal and food add functions to be added to implement them
     fo=open(sourcefile,"r+")
@@ -48,81 +44,46 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
             foodList.append(Food(step_2[0],step_2[1])) 
     fo.close()
 
-
 def addStaff():
     staffList.append(Staff.create(sourcefile))
     
 
+
 def addAnimal():
     animalList.append(Animal.create(environmentList,sourcefile))
-
 
 def addEnvironment():
     environmentList.append(Environment.create(sourcefile,environmentList))
 
-
 def addFood():
     foodList.append(Food.create(sourcefile))
 
-def addObservation(): 
-    printAnimals(0)
-    
-    selection = input("Select an animal by its no: ")
-    foundAnimal = None
-    while foundAnimal is None: 
-        for animal in animalList:
-            if selection == animal.no: foundAnimal = animal
-        if foundAnimal is None:
-            print("This animal doesn't exist in the database.")
-            selection = input("Select an animal by its no: ")
-    foundAnimal.addObservation(sourcefile,staffList)
-
-    
-
-def addFeedingReport(): pass
-
-def printAnimals(isFromMenu):
-
+def printAnimals():
     data = [['Number', 'Gender', 'Date of Birth', 'Color']]
     for a in animalList: data.append([a.no, a.gender, a.doB, a.color])
     print(AsciiTable(data).table)
-    if(isFromMenu):
-        selection = input("Enter the number of animal whose details you want to see: ")
-        found = 0
-        while found == 0:
-            for a in animalList:
-                if a.no == selection:
-                    a.printDetails()
-                    found = 1
-            if found == 0:
-                print("This animal doesn't exist in the database.")
-                selection = input("Enter the number of animal whose details you want to see: ")
-         
-            
+    selection = input("Enter the number of animal you want to see details: ")
+    for a in animalList:
+        if a.no == selection:
+            a.printDetails()
 
-
-def printStaff(staffList):
+def printStaff():
     data = [['ID', 'Name', 'Surname', 'Office', 'Tel']]
     for s in staffList: data.append([s.id,s.fName,s.lName,s.office,s.tel])
     print(AsciiTable(data).table)
     input("Press Enter to continue...")
     
-
 def printFood():
     data = [['Food Name', 'Manufacturer']]
     for f in foodList: data.append([f.foodName, f.manufacturer])
     print(AsciiTable(data).table)
     input("Press Enter to continue...")
 
-
 def printEnvironment():
     data = [['Humidity', 'Size', 'Temperature', 'Hours of light']]
     for a in environmentList: data.append([a.humidity, a.size, a.temperature, a.h_of_light])
     print(AsciiTable(data).table)
     input("Press Enter to continue...")
-
-
-    
 
 def menu():
     while 1:
@@ -139,29 +100,24 @@ def menu():
                 ['7', 'Add a new staff'],
                 ['8', 'Add a new animal'],
                 ['9', 'Add a new environment'],
-                ['10', 'Add a new food item'],
-                ['-1', 'Exit']]).table)
+                ['10', 'Add a new food item']]).table)
         selection = int(input("Selection: "))
-        if selection == 1: printStaff(staffList)
-        elif selection == 2: printAnimals(1)
+        if selection == 1: printStaff()
+        elif selection == 2: printAnimals()
         elif selection == 3: printFood()
         elif selection == 4: printEnvironment()
-        elif selection == 5: addFeedingReport()
-        elif selection == 6: addObservation()
         elif selection == 7: addStaff()
         elif selection == 8: addAnimal()
         elif selection == 9: addEnvironment()
         elif selection == 10: addFood()
-        elif selection == -1: raise SystemExit
-
 
 if __name__ == '__main__':
     staffList = []
     foodList = [] 
     animalList = []
     environmentList = []
-    loadFile()     #Finds or creates source txt file
-    readTxtFile()  #Reads from source file according to staff,animal or food lists
+    loadfile()     #Finds or creates source txt file
+    readTxtFile()  #Reads from source file to according staff,animal or food lists
     menu()
     
  
