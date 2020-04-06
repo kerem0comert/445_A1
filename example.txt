@@ -4,3 +4,4 @@ E:20,Big,30,16,1
 A:1,Male,1998,Pink,1
 E:%85,Small,25,14,2
 F:Meat,SoykaninMutfagi
+O:06/04/2020,15:41,1,2,testnote,012345,1

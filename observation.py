@@ -11,7 +11,7 @@ class Observation:
         self.staff = staff
 
     @staticmethod
-    def create(observationRecord, sourcefile, staffList):
+    def create(animalID,sourcefile, staffList):
       observationDate = datetime.datetime.today().strftime("%d/%m/%Y")
       observationTime = datetime.datetime.now().strftime("%H:%M")
       aWeight = input("Enter animal weight: ")
@@ -21,13 +21,16 @@ class Observation:
       for s in staffList: data.append([s.id,s.fName,s.lName,s.office,s.tel])
       print(AsciiTable(data).table)
       selection = input("Select a staff by its ID: ")
-      found = None
+      theStaff = None
 
-      while found is None:
+      while theStaff is None:
         for staff in staffList:
-            if selection == staff.id: found = staff
-        if found is None:
+            if selection == staff.id: theStaff = staff
+        if theStaff is None:
             print("This staff doesn't exist in the database.")
             selection = input("Select a staff by its ID: ")
-
-      return Observation(observationDate, observationTime, aWeight, temperature, note, staff)
+    
+      fo=open(sourcefile,"a+")
+      fo.write("\nO:%s,%s,%s,%s,%s,%s,%s" % (observationDate,observationTime,aWeight,temperature,note,theStaff.id,animalID))
+      fo.close()
+      return Observation(observationDate, observationTime, aWeight, temperature, note, theStaff)
