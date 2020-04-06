@@ -2,7 +2,7 @@ from terminaltables import AsciiTable
 from environment import *
 from observation import *
 
-class Animal():
+class Animal:
     observationRecord = []
     feedingRecord = []
     def __init__(self, no, gender, doB, color, environment):
