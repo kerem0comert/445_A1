@@ -29,13 +29,13 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
         if ln.startswith("S:"):
             step_2=ln[2:].split(",")
             staffList.append(Staff(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))       
-        if ln.startswith("A:"):
+        elif ln.startswith("A:"):
             step_2=ln[2:].split(",")
             animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
-        if ln.startswith("E:"):
+        elif ln.startswith("E:"):
             step_2=ln[2:].split(",")
             environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
-        if ln.startswith("F:"):
+        elif ln.startswith("F:"):
             step_2=ln[2:].split(",")
             foodList.append(Food(step_2[0],step_2[1])) 
     fo.close()
