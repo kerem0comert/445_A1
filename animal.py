@@ -26,7 +26,7 @@ class Animal():
         print(AsciiTable(data).table)
         print("\n============ENVIRONMENT=============")
         data = [['Humidity', 'Size', 'Temperature', 'Hours of light']]
-        for record in self.environment: data.append([self.environment.humidity, self.environment.size, self.environment.temperature, self.environment.h_of_light])
+        data.append([self.environment.humidity, self.environment.size, self.environment.temperature, self.environment.h_of_light])
         print(AsciiTable(data).table)
        
         input("Press Enter to continue...")
