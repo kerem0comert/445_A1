@@ -32,7 +32,15 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
             staffList.append(Staff(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))
         elif ln.startswith("A:"):
             step_2=ln[2:].split(",")
-            animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))
+            theEnvironment = None
+            for environment in environmentList:
+                if environment.environmentID == step_2[4]:
+                    theEnvironment = environment
+            if (theEnvironment == None):
+                print("Error while parsing file!")
+                print("The environment with no", step_2[4], "is not found!")
+                raise SystemExit
+            animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],theEnvironment))
         elif ln.startswith("E:"):
             step_2=ln[2:].split(",")
             environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
