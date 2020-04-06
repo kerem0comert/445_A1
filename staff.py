@@ -1,6 +1,5 @@
 import re
 
-
 class Staff:
     def __init__(self, id, fName, lName, office, tel):
         self.id = id
@@ -23,7 +22,7 @@ class Staff:
         idList = re.findall(idInFileRegex,foContents)
     
         id = input("Enter ID (6 digits): ")
-        while re.match(digitRegex, id) is None: 
+        while re.match(digitRegex, id) is None:
             print("The format of the id is incorrect.")
             id = input("Enter ID (6 digits):")
         while id in idList:
@@ -41,13 +40,10 @@ class Staff:
             office = input("Enter Office Number (A-XXX where X is digit):")
 
         tel = input("Enter Tel Number (6 digits):")
-        while re.match(digitRegex, tel) is None: 
+        while re.match(digitRegex, tel) is None:
             print("The format of the telephone number is incorrect.")
             tel = input("Enter Tel Number (6 digits):")
 
         fo.write("\nS:%s,%s,%s,%s,%s" % (id,fName,lName,office,tel))
         fo.close()
         return Staff(id, fName, lName, office, tel)
-
-  
-        

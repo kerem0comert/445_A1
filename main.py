@@ -9,8 +9,9 @@ import datetime
 import os
 import sys
 
-
 sourcefile = "place_holder"  #Global variable-source txt file's name
+
+
 def loadFile():
     global sourcefile
     if sys.argv[1:]==[]:       #if there is no argument entered in terminal
@@ -28,10 +29,10 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
     for ln in fl:
         if ln.startswith("S:"):
             step_2=ln[2:].split(",")
-            staffList.append(Staff(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))       
+            staffList.append(Staff(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))
         elif ln.startswith("A:"):
             step_2=ln[2:].split(",")
-            animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
+            animalList.append(Animal(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4]))
         elif ln.startswith("E:"):
             step_2=ln[2:].split(",")
             environmentList.append(Environment(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4])) 
@@ -56,12 +57,12 @@ def addEnvironment():
 def addFood():
     foodList.append(Food.create(sourcefile))
 
-def addObservation(): 
+
+def addObservation():
     printAnimals(0)
-    
     selection = input("Select an animal by its no: ")
     foundAnimal = None
-    while foundAnimal is None: 
+    while foundAnimal is None:
         for animal in animalList:
             if selection == animal.no: foundAnimal = animal
         if foundAnimal is None:
@@ -69,12 +70,11 @@ def addObservation():
             selection = input("Select an animal by its no: ")
     foundAnimal.addObservation(sourcefile,staffList)
 
-    
 
 def addFeedingReport(): pass
 
-def printAnimals(isFromMenu):
 
+def printAnimals(isFromMenu):
     data = [['Number', 'Gender', 'Date of Birth', 'Color']]
     for a in animalList: data.append([a.no, a.gender, a.doB, a.color])
     print(AsciiTable(data).table)
@@ -89,8 +89,7 @@ def printAnimals(isFromMenu):
             if found == 0:
                 print("This animal doesn't exist in the database.")
                 selection = input("Enter the number of animal whose details you want to see: ")
-         
-            
+
 
 
 def printStaff(staffList):
@@ -98,7 +97,7 @@ def printStaff(staffList):
     for s in staffList: data.append([s.id,s.fName,s.lName,s.office,s.tel])
     print(AsciiTable(data).table)
     input("Press Enter to continue...")
-    
+
 
 def printFood():
     data = [['Food Name', 'Manufacturer']]
@@ -113,8 +112,6 @@ def printEnvironment():
     print(AsciiTable(data).table)
     input("Press Enter to continue...")
 
-
-    
 
 def menu():
     while 1:
