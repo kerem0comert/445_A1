@@ -15,9 +15,12 @@ def loadFile():
         sourcefile=input("There is no argument!\nEnter a name for txt file to be created:")
         fo=open(sourcefile,"w+")
         fo.close()
-    else:                     #if there is an extra argument in terminal
+    elif len(sys.argv) == 2:
         print(f"The source txt file name is {sys.argv[1]}")
-        sourcefile=sys.argv[1]      #no error checks - sourcefileNotFound, TooManyArguments SHALL BE ADDED
+        sourcefile=sys.argv[1]
+    else:
+        print("Too many arguments!")
+        raise SystemExit
 
 
 def readTxtFile():            #staff read is done, waiting for animal and food add functions to be added to implement them
