@@ -1,5 +1,6 @@
 import datetime
 from main import *
+from staff import *
 import time
 
 class Observation:
@@ -23,15 +24,19 @@ class Observation:
       data = [['ID', 'Name', 'Surname', 'Office', 'Tel']]
       for s in staffList: data.append([s.id,s.fName,s.lName,s.office,s.tel])
       print(AsciiTable(data).table)
-      selection = input("Select a staff by its ID: ")
+      selection = input("Select a staff by its ID (type 0 to create a new one): ")
       theStaff = None
 
       while theStaff is None:
-        for staff in staffList:
+        if selection != '0':
+          for staff in staffList:
             if selection == staff.id: theStaff = staff
-        if theStaff is None:
+          if theStaff is None:
             print("This staff doesn't exist in the database.")
-            selection = input("Select a staff by its ID: ")
+            selection = input("Select a staff by its ID (type 0 to create a new one): ")
+        else:
+          theStaff = Staff.create(sourcefile)
+          staffList.append(theStaff)
     
       fo=open(sourcefile,"a+")
       fo.write("\nO:%s,%s,%s,%s,%s,%s,%s,%d" % (observationDate,observationTime,

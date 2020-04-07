@@ -118,31 +118,44 @@ def addFood():
 
 def addObservation():
     printAnimals(0)
-    selection = input("Select an animal by its no: ")
+    selection = input("Select an animal by its no (type 0 to create a new one): ")
     foundAnimal = None
     while foundAnimal is None:
-        for animal in animalList:
-            if selection == animal.no: foundAnimal = animal
-        if foundAnimal is None:
-            print("This animal doesn't exist in the database.")
-            selection = input("Select an animal by its no: ")
+        if selection != '0':
+            for animal in animalList:
+                if selection == animal.no: foundAnimal = animal
+            if foundAnimal is None:
+                print("This animal doesn't exist in the database.")
+                selection = input("Select an animal by its no (type 0 to create a new one): ")
+        else:
+            foundAnimal = Animal.create(environmentList, sourcefile)
+            animalList.append(foundAnimal)
+    
     foundAnimal.addObservation(sourcefile,staffList)
 
 
 def addFeedingReport():
     printAnimals(0)
-    selection = input("Select an animal by its no: ")
+    selection = input("Select an animal by its no (type 0 to create a new one): ")
     foundAnimal = None
     while foundAnimal is None:
-        for animal in animalList:
-            if selection == animal.no: foundAnimal = animal
-        if foundAnimal is None:
-            print("This animal doesn't exist in the database.")
-            selection = input("Select an animal by its no: ")
+        if selection != '0':
+            for animal in animalList:
+                if selection == animal.no: foundAnimal = animal
+            if foundAnimal is None:
+                print("This animal doesn't exist in the database.")
+                selection = input("Select an animal by its no (type 0 to create a new one): ")
+        else:
+            foundAnimal = Animal.create(environmentList, sourcefile)
+            animalList.append(foundAnimal)
+    
     foundAnimal.addFeeding(sourcefile,staffList,foodList)
 
 
 def printAnimals(isFromMenu):
+    if len(animalList) == 0 and isFromMenu:
+        print("There is no animal to show detail of!")
+        return
     data = [['Number', 'Gender', 'Date of Birth', 'Color']]
     for a in animalList: data.append([a.no, a.gender, a.doB, a.color])
     print(AsciiTable(data).table)
