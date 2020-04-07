@@ -9,9 +9,6 @@ import datetime
 import os
 import sys
 
-sourcefile = "place_holder"  #Global variable-source txt file's name
-
-
 def loadFile():
     global sourcefile
     if sys.argv[1:]==[]:       #if there is no argument entered in terminal
@@ -213,6 +210,7 @@ if __name__ == '__main__':
     foodList = [] 
     animalList = []
     environmentList = []
+    sourcefile = None
     loadFile()     #Finds or creates source txt file
     readTxtFile()  #Reads from source file according to staff,animal or food lists
     menu()
