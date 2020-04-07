@@ -2,8 +2,7 @@ from terminaltables import AsciiTable
 from environment import *
 from observation import *
 import time
-import os
-import re
+
 
 DAY = 24*60*60
 
