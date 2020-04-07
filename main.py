@@ -92,7 +92,8 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
                 print("Error while parsing file!")
                 print("The food with no", step_2[2], "is not found!")
                 raise SystemExit
-            theAnimal.feedingRecord.append(Feeding(step_2[0],step_2[1],theFood,step_2[3],theStaff))
+            #step_2[6] is the unixTimeStamp which we use to compare dates easily
+            theAnimal.feedingRecord.append(Feeding(step_2[0],step_2[1],theFood,step_2[3],theStaff,step_2[6]))
     fo.close()
 
 

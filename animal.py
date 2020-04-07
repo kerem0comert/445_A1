@@ -1,6 +1,9 @@
 from terminaltables import AsciiTable
 from environment import *
 from observation import *
+import time
+
+DAY = 24*60*60
 
 class Animal:
     observationRecord = []
@@ -65,4 +68,17 @@ class Animal:
         self.observationRecord.append(Observation.create(self.no,sourcefile,staffList))
 
     def addFeeding(self, sourcefile, staffList, foodList): 
-        self.feedingRecord.append(Feeding.create(self.no,sourcefile,staffList, foodList))
+        
+        #for this to work properly, all the different machines that are running this code
+        #must have synchronized date and times locally. By assumption, this is UTC
+        currentTimeStamp = int(time.time()) 
+        counter = sum(currentTimeStamp - int(f.unixTimeStamp) < DAY for f in self.feedingRecord)
+        if counter > 2: 
+            print("You already fed this animal {} times today!".format(counter))
+            return
+
+        feedingDate = datetime.datetime.today().strftime("%d/%m/%Y")
+        feedingTime = datetime.datetime.now().strftime("%H:%M")
+
+        self.feedingRecord.append(Feeding.create
+                                  (self.no,sourcefile,staffList, foodList, feedingDate, feedingTime, currentTimeStamp))

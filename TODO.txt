@@ -1,0 +1,11 @@
+- An animal should not be fed more than two times in a day and 
+  should be observed more thanthree times in a day.
+
+- The application should be able to produce the following reports. 
+  Each report should be printed both on a screen and also exported as txt file;
+
+-- Feeding details of a given animal between specified dates
+
+-- Observation details of a given animal between specified dates
+
+-- Staff who have observed a given animal
