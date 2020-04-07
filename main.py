@@ -65,7 +65,9 @@ def readTxtFile():            #staff read is done, waiting for animal and food a
                 print("Error while parsing file!")
                 print("The animal with no", step_2[6], "is not found!")
                 raise SystemExit
-            theAnimal.observationRecord.append(Observation(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4],theStaff))
+            #step_2[7] = unixTimeStamp
+            theAnimal.observationRecord.append(
+                Observation(step_2[0],step_2[1],step_2[2],step_2[3],step_2[4],theStaff, step_2[7]))
         elif ln.startswith("I:"): #feeding
             step_2=ln[2:].split(",")
             theStaff = None
@@ -161,7 +163,12 @@ def printStaff(staffList):
     data = [['ID', 'Name', 'Surname', 'Office', 'Tel']]
     for s in staffList: data.append([s.id,s.fName,s.lName,s.office,s.tel])
     print(AsciiTable(data).table)
-    input("Press Enter to continue...")
+    selection = input("Press 'E' to export details.\nPress Enter to continue...")
+    if selection == 'e' or selection == 'E':
+        with open("staffDetails.txt", "w") as staffDetails:
+            staffDetails.write(AsciiTable(data).table)
+            print("Export successful.")
+
 
 
 def printFood():

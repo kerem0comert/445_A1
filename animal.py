@@ -14,8 +14,10 @@ class Animal:
         self.doB = doB
         self.color = color
         self.environment = environment
+    
 
     def printDetails(self):
+        
         print("\n========ANIMAL=========")
         data = [['no', 'gender', 'doB', 'color'],[self.no, self.gender, self.doB, self.color]]
         print(AsciiTable(data).table)
@@ -31,6 +33,13 @@ class Animal:
         data = [['Humidity', 'Size', 'Temperature', 'Hours of light']]
         data.append([self.environment.humidity, self.environment.size, self.environment.temperature, self.environment.h_of_light])
         print(AsciiTable(data).table)
+
+        currentTimeStamp = int(time.time()) 
+        
+        observationCount = sum(currentTimeStamp - int(o.unixTimeStamp) < DAY for o in self.observationRecord)
+        if observationCount < 3:
+            print("Today, this animal has been observed {} times. "
+                  "Please make sure to observe it 3 times before today ends.".format(observationCount))
        
         input("Press Enter to continue...")
 
