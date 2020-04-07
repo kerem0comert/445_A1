@@ -109,7 +109,7 @@ def addEnvironment():
 
 
 def addFood():
-    foodList.append(Food.create(sourcefile))
+    foodList.append(Food.create(sourcefile, foodList))
 
 
 def addObservation():

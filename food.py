@@ -8,7 +8,7 @@ class Food:
     def create(sourcefile, foodList):
         No=1
         for x in foodList: No += 1
-        foodID = No
+        foodID = str(No)
         foodName = input("Enter Food Name: ")
         manufacturer = input("Enter Manufacturer: ")
         fo=open(sourcefile,"a+")
