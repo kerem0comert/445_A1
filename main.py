@@ -163,7 +163,7 @@ def printStaff(staffList):
     data = [['ID', 'Name', 'Surname', 'Office', 'Tel']]
     for s in staffList: data.append([s.id,s.fName,s.lName,s.office,s.tel])
     print(AsciiTable(data).table)
-    selection = input("Press 'E' to export details.\nPress Enter to continue...")
+    selection = input("Type 'E' to export details.\nor, press Enter to continue:")
     if selection == 'e' or selection == 'E':
         with open("staffDetails.txt", "w") as staffDetails:
             staffDetails.write(AsciiTable(data).table)
