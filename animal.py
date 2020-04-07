@@ -121,7 +121,7 @@ class Animal:
                             record.weight, record.staff.fName + " " + record.staff.lName])
         if len(data) == 1: print("No record found in the specified period.")
         else: print(AsciiTable(data).table)
-        selection = input("Press 'E' to export details.\nPress Enter to continue...")
+        selection = input("Type 'E' to export details.\nor, press Enter to continue:")
         if selection == 'e' or selection == 'E':
             with open("feed_a{}.txt".format(self.no), "w") as feedDetails:
                 feedDetails.write(AsciiTable(data).table)
@@ -138,7 +138,7 @@ class Animal:
                              record.temperature, record.note, record.staff.fName + " " + record.staff.lName])
         if len(data) == 1: print("No record found in the specified period.")
         else: print(AsciiTable(data).table)
-        selection = input("Press 'E' to export details.\nPress Enter to continue...")
+        selection = input("Type 'E' to export details.\nor, press Enter to continue:")
         if selection == 'e' or selection == 'E':
             with open("obsv_a{}.txt".format(self.no), "w") as obsvDetails:
                 obsvDetails.write(AsciiTable(data).table)
@@ -175,7 +175,7 @@ class Animal:
                 data.append([o.staff.id,o.staff.fName,o.staff.lName,o.staff.office,o.staff.tel])
                 uniqueStaffList.append(o.staff)
         print(AsciiTable(data).table)
-        selection = input("Press 'E' to export details.\nPress Enter to continue...")
+        selection = input("Type 'E' to export details.\nor, press Enter to continue:")
         if selection == 'e' or selection == 'E':
             with open("staff_a{}.txt".format(self.no), "w") as uniqueStaffDetails:
                 uniqueStaffDetails.write(AsciiTable(data).table)
@@ -190,7 +190,7 @@ class Animal:
                 data.append([feeding.food.foodID,feeding.food.foodName,feeding.food.manufacturer])
                 uniqueFoodList.append(feeding.food.foodID)
         print(AsciiTable(data).table)
-        selection = input("Press 'E' to export details.\nPress Enter to continue...")
+        selection = input("Type 'E' to export details.\nor, press Enter to continue:")
         if selection == 'e' or selection == 'E':
             with open("feed_a{}.txt".format(self.no), "w") as uniqueFoodList:
                 uniqueFoodList.write(AsciiTable(data).table)
