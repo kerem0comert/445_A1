@@ -21,6 +21,7 @@ def loadFile():
     else:
         print("Too many arguments!")
         raise SystemExit
+        
 
 
 def readTxtFile():            #staff read is done, waiting for animal and food add functions to be added to implement them

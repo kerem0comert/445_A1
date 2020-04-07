@@ -7,14 +7,15 @@ import time
 DAY = 24*60*60
 
 class Animal:
-    observationRecord = []
-    feedingRecord = []
+    
     def __init__(self, no, gender, doB, color, environment):
         self.no = no
         self.gender = gender
         self.doB = doB
         self.color = color
         self.environment = environment
+        self.observationRecord = []
+        self.feedingRecord = []
     
 
     def printDetails(self):
@@ -145,18 +146,23 @@ class Animal:
     
 
     def dateSelector(self):
-        start = input("Select start date (dd/mm/yy): ")
-        try: 
-            startDate = datetime.datetime.strptime(start,"%d/%m/%y")
-        except  ValueError as err:
-            print(err)
-            self.dateSelector()
-        end = input("Select end date (dd/mm/yy): ")
-        try: 
-            endDate = datetime.datetime.strptime(end,"%d/%m/%y")
-        except  ValueError as err:
-            print(err)
-            self.dateSelector()
+     
+        while 1:
+            try: 
+                start = input("Select start date (dd/mm/yy): ")
+                startDate = datetime.datetime.strptime(start,"%d/%m/%y")
+                break
+            except ValueError as err:
+                print(err)
+                
+        while 1:
+            try:
+                end = input("Select end date (dd/mm/yy): ") 
+                endDate = datetime.datetime.strptime(end,"%d/%m/%y")
+                break
+            except ValueError as err:
+                print(err)
+                
         #cast date objects into unixTimeStamps and return.
         return startDate, endDate
     

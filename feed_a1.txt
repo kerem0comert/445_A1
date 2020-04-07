@@ -1,5 +1,10 @@
-+----+------+-----------------+
-| ID | Name | Manufacturer    |
-+----+------+-----------------+
-| 1  | Meat | SoykaninMutfagi |
-+----+------+-----------------+
++------------+-------+-----------+-----------------+--------+--------------+
+| Date       | Time  | Food Name | Manufacturer    | Weight | Staff        |
++------------+-------+-----------+-----------------+--------+--------------+
+| 07/04/2020 | 16:09 | Meat      | SoykaninMutfagi | 20     | Soykan KAMAL |
+| 07/04/2020 | 16:31 | Meat      | SoykaninMutfagi | 20     | Kerem Comert |
+| 07/04/2020 | 16:31 | Meat      | SoykaninMutfagi | 12     | Kerem Comert |
+| 07/04/2020 | 16:31 | Meat      | SoykaninMutfagi | 123    | Kerem Comert |
+| 07/04/2020 | 16:33 | Meat      | SoykaninMutfagi | 12     | Kerem Comert |
+| 07/04/2020 | 16:34 | Meat      | SoykaninMutfagi | 123    | Kerem Comert |
++------------+-------+-----------+-----------------+--------+--------------+
